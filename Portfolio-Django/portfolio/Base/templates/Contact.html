@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Yashwant Nayak</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f0f23;
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Animated Aurora Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000000;
+            overflow: hidden;
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(0, 255, 200, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 20%, rgba(138, 43, 226, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at 40% 70%, rgba(0, 191, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 80%, rgba(255, 0, 128, 0.12) 0%, transparent 40%);
+            animation: aurora 20s ease-in-out infinite;
+        }
+
+        .animated-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 60% 40%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 30% 60%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 90% 70%, rgba(255, 105, 180, 0.08) 0%, transparent 50%);
+            animation: auroraPulse 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes aurora {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 1;
+            }
+            25% { 
+                transform: translate(-30px, 40px) rotate(5deg);
+                opacity: 0.9;
+            }
+            50% { 
+                transform: translate(50px, -30px) rotate(-3deg);
+                opacity: 1;
+            }
+            75% { 
+                transform: translate(-40px, -20px) rotate(4deg);
+                opacity: 0.95;
+            }
+        }
+
+        @keyframes auroraPulse {
+            0% { 
+                transform: scale(1) translate(0, 0);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: scale(1.1) translate(20px, -20px);
+                opacity: 1;
+            }
+            100% { 
+                transform: scale(0.95) translate(-20px, 20px);
+                opacity: 0.85;
+            }
+        }
+
+        /* Navbar Styles */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 200, 0.2);
+        }
+
+        .left-nav h2 {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .right-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .right-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .right-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .right-nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 4rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #contact h1 {
+            text-align: center;
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .form {
+            width: 100%;
+            max-width: 600px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-div input,
+        .form-div textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 200, 0.3);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-div input::placeholder,
+        .form-div textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-div input:focus,
+        .form-div textarea:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(0, 255, 200, 0.8);
+            box-shadow: 0 0 20px rgba(0, 255, 200, 0.3);
+        }
+
+        .form-div textarea {
+            min-height: 150px;
+            resize: vertical;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .submit-btn {
+            margin-top: 1rem;
+        }
+
+        .submit-btn button {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, rgba(0, 255, 200, 0.3) 0%, rgba(138, 43, 226, 0.3) 100%);
+            border: 2px solid rgba(0, 255, 200, 0.5);
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn button:hover {
+            background: linear-gradient(135deg, rgba(0, 255, 200, 0.5) 0%, rgba(138, 43, 226, 0.5) 100%);
+            border-color: rgba(0, 255, 200, 0.8);
+            box-shadow: 0 0 30px rgba(0, 255, 200, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .submit-btn button:active {
+            transform: translateY(0);
+        }
+
+        /* Contact Info Section */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            color: white;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(0, 255, 200, 0.4);
+            transform: translateX(10px);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 255, 200, 0.2);
+            border-radius: 50%;
+            border: 2px solid rgba(0, 255, 200, 0.4);
+        }
+
+        .info-icon svg {
+            width: 25px;
+            height: 25px;
+            fill: rgba(0, 255, 200, 0.9);
+        }
+
+        .info-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: rgba(0, 255, 200, 0.9);
+        }
+
+        .info-text p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            #contact h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-container {
+                flex-direction: column;
+            }
+
+            .form {
+                padding: 2rem;
+            }
+
+            .right-nav {
+                gap: 1rem;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #contact {
+                padding: 2rem 3%;
+            }
+
+            #contact h1 {
+                font-size: 2rem;
+            }
+
+            .form {
+                padding: 1.5rem;
+            }
+
+            .form-div input,
+            .form-div textarea {
+                padding: 0.9rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    
+    <nav>
+        <div class="left-nav">
+            <h2>Portfolio</h2>
+        </div>
+        <div class="right-nav">
+            <a href="/">Home</a>
+            <a href="About.html">About</a>
+            <a href="Projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section id="contact">
+        <h1>Get in Touch</h1>
+        <div class="contact-container">
+            <div class="form" id="contactForm">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="form-inputs">
+                            <div class="name form-div">
+                                <input type="text" name="name" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="email form-div">
+                                <input type="email" name="email" id="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="message form-div">
+                                <textarea name="message" id="message" placeholder="Your Message" required></textarea>
+                            </div>
+                        </div>
+                        <div class="submit-btn form-div">
+                            <button type="submit">Send Message</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
